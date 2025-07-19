@@ -34,12 +34,22 @@ class BankAccount{
     public void displayBalance(){
         System.out.println("Your balance is " + balance);
     }
+
+    public void transferTo(BankAccount other, double amount) {
+        if(this.balance >= amount) {
+            other.deposit(amount);
+        }else{
+            System.out.println("Amount to be transferred: " + amount);
+            System.out.println("Insufficient Balance in your account");
+        }
+    }
 }
 public class ATMMachineSimulator {
     public static void main(String[] args) {
         BankAccount customer1 = new BankAccount(1, "Jack", 10000);
         BankAccount customer2 = new BankAccount(2, "Payal", 14000);
-        BankAccount customer3 = new BankAccount(3, "Goyal", 16000);
+        BankAccount customer3 = new BankAccount(3, "Palak", 16000);
+        BankAccount customer4 = new BankAccount(4, "Goyal", 12000);
         customer1.getDetails();
         customer1.deposit(500);
         customer1.displayBalance();
@@ -50,5 +60,7 @@ public class ATMMachineSimulator {
         customer3.deposit(6589);
         customer3.withdraw(7886);
         customer3.displayBalance();
+        customer4.getDetails();
+        customer4.transferTo(customer1, 16000);
     }
 }
